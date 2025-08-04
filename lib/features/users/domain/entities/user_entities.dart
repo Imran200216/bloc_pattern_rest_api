@@ -65,6 +65,11 @@ class Hair {
   final String? type;
 
   Hair({required this.color, required this.type});
+
+  factory Hair.fromJson(Map<String, dynamic> json) =>
+      Hair(color: json['color'], type: json['type']);
+
+  Map<String, dynamic> toJson() => {'color': color, 'type': type};
 }
 
 class Address {
@@ -85,6 +90,26 @@ class Address {
     required this.coordinates,
     required this.country,
   });
+
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
+    address: json['address'],
+    city: json['city'],
+    state: json['state'],
+    stateCode: json['stateCode'],
+    postalCode: json['postalCode'],
+    coordinates: Coordinates.fromJson(json['coordinates']),
+    country: json['country'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'address': address,
+    'city': city,
+    'state': state,
+    'stateCode': stateCode,
+    'postalCode': postalCode,
+    'coordinates': coordinates.toJson(),
+    'country': country,
+  };
 }
 
 class Coordinates {
@@ -92,6 +117,13 @@ class Coordinates {
   final double? long;
 
   Coordinates({required this.lat, required this.long});
+
+  factory Coordinates.fromJson(Map<String, dynamic> json) => Coordinates(
+    lat: (json['lat'] as num?)?.toDouble(),
+    long: (json['long'] as num?)?.toDouble(),
+  );
+
+  Map<String, dynamic> toJson() => {'lat': lat, 'long': long};
 }
 
 class Bank {
@@ -108,6 +140,22 @@ class Bank {
     required this.currency,
     required this.iban,
   });
+
+  factory Bank.fromJson(Map<String, dynamic> json) => Bank(
+    cardExpire: json['cardExpire'],
+    cardNumber: json['cardNumber'],
+    cardType: json['cardType'],
+    currency: json['currency'],
+    iban: json['iban'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'cardExpire': cardExpire,
+    'cardNumber': cardNumber,
+    'cardType': cardType,
+    'currency': currency,
+    'iban': iban,
+  };
 }
 
 class Company {
@@ -122,6 +170,20 @@ class Company {
     required this.title,
     required this.companyAddress,
   });
+
+  factory Company.fromJson(Map<String, dynamic> json) => Company(
+    department: json['department'],
+    name: json['name'],
+    title: json['title'],
+    companyAddress: CompanyAddress.fromJson(json['address']),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'department': department,
+    'name': name,
+    'title': title,
+    'address': companyAddress.toJson(),
+  };
 }
 
 class CompanyAddress {
@@ -142,6 +204,26 @@ class CompanyAddress {
     required this.coordinates,
     required this.country,
   });
+
+  factory CompanyAddress.fromJson(Map<String, dynamic> json) => CompanyAddress(
+    address: json['address'],
+    city: json['city'],
+    state: json['state'],
+    stateCode: json['stateCode'],
+    postalCode: json['postalCode'],
+    coordinates: Coordinates.fromJson(json['coordinates']),
+    country: json['country'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'address': address,
+    'city': city,
+    'state': state,
+    'stateCode': stateCode,
+    'postalCode': postalCode,
+    'coordinates': coordinates.toJson(),
+    'country': country,
+  };
 }
 
 class Crypto {
@@ -150,4 +232,16 @@ class Crypto {
   final String? network;
 
   Crypto({required this.coin, required this.wallet, required this.network});
+
+  factory Crypto.fromJson(Map<String, dynamic> json) => Crypto(
+    coin: json['coin'],
+    wallet: json['wallet'],
+    network: json['network'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'coin': coin,
+    'wallet': wallet,
+    'network': network,
+  };
 }
